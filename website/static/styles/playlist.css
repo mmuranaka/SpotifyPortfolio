@@ -1,0 +1,12 @@
+body {
+    transition: opacity 0.5s ease;
+    color: white;
+}
+
+.category-header-info {
+    background: linear-gradient(to bottom, #2e59b4ff 0%, #181818ff 125%)
+}
+
+.category-buttons {
+    background: linear-gradient(to bottom, #1d2639ff 0%, #181818ff 125%)
+}

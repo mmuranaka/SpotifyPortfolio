@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Spotify Mix';
+    src: url('../font/SpotifyMix-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Spotify Mix';
+    src: url('../font/SpotifyMix-Extrabold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Spotify Mix';
+    src: url('../font/SpotifyMix-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Spotify Mix', arial;
+    font-weight: normal;
+    font-style: normal;
+    color: white;
+
+    cursor: default;
+    user-select: none;
+}
+
+img {
+    pointer-events: none;
+}
+
+.text-secondary {
+    color: rgba(255,255,255,0.7);
+}

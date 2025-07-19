@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <div class="flex flex-col">
+    <div class="flex flex-row pt-12 pl-8 pb-6 category-header-info">
+      <img src="{{ img_src ~ playlist.cover }}" alt="playlist cover" class="h-56 w-56 rounded-md shadow-xl object-cover">
+      <div class="flex flex-col pl-8 justify-end">
+        <p class="pl-1 text-[14px] text-secondary">{{ playlist.playlist_type }}</p>
+        <p class="font-extrabold text-[96px]">{{ playlist.name }}</p>
+        <p class="pl-1 text-[14px] text-secondary">{{ playlist.description }}<p>
+        <div class="flex flex-row mt-2 align-center">
+          <img src="{{ img_src ~ playlist.creator_picture }}" alt="creator image" class="h-6 w-6 rounded-[50%]">
+          {% if playlist.madeFor %}
+            <p class="text-[14px] text-gray-300 text-secondary">&nbsp;Made for</p>
+          {% endif %}
+          <p>&nbsp;</p>
+          {% if playlist.creator == "matthewmuranaka" %}
+            <a href="/profile">
+          {% endif %}
+          <p class="font-bold text-[14px] hover:underline">&nbsp;{{ playlist.creator }}</p>
+          {% if playlist.creator == "matthewmuranaka" %}
+            </a>
+          {% endif %}
+          {% if playlist.other %}
+            <p class="text-[14px] text-gray-300 text-secondary">&nbsp;&#183; {{ playlist.other }}</p>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-row pt-2 pl-2 items-center category-buttons">
+      <a href="/resume" target="_blank">
+        <span class="w-12 h-12 mx-3 flex items-center justify-center bg-[#1dd760ff] rounded-full relative inline-block group">
+          <i class="fa-solid fa-play text-black"></i>
+          <span class="absolute bottom-full left-1/2 mb-2 -translate-x-1/2 px-2 py-1 text-[14px] font-thin text-white bg-black rounded shadow-lg opacity-0 transition-opacity duration-200 delay-200 group-hover:opacity-100">
+            Resume
+          </span>
+        </span>
+      </a>
+      <i class="fa-solid fa-shuffle fa-2x text-gray-300"></i>
+      <i class="fa-solid fa-plus fa-2x pl-4 text-gray-300"></i>
+      <i class="fa-regular fa-circle-down fa-2x pl-4 text-gray-300"></i>
+      <i class="fa-solid fa-ellipsis fa-2x pl-4 text-gray-300"></i>
+    </div>
+    <div class="m-8 text-secondary text-[14px]">
+      <table class="w-full song-list table-fixed">
+        <thead class="border-b border-[#555]">
+          <tr>
+            <th class="text-center w-6 mx-3 p-2">#</th>
+            <th class="w-fit text-left p-2">{{ playlist.col1 }}</th>
+            <th class="w-96 text-left p-2">
+              {% if playlist.col2 %}
+                <p> {{ playlist.col2 }} </p>
+              {% endif %}
+            </th>
+            <th class="w-64 text-end p-2 pr-16 whitespace-nowrap">
+              {% if playlist.col3 %}
+                <div class="relative inline-block group">
+                  <i class="fa-regular fa-clock"></i>
+                  <span class="absolute bottom-full left-1/2 mb-2 -translate-x-1/2 px-2 py-1 text-[14px] font-thin text-white whitespace-normal w-32 max-w-32 inline-block text-center bg-black rounded shadow-lg opacity-0 transition-opacity duration-200 delay-200 group-hover:opacity-100">
+                    {{ playlist.col3 }}
+                  </span>
+                </div>
+              {% endif %}
+            </th>
+          </tr>
+        </thead>
+          <tbody>
+            <tr class="h-4"></tr>
+            {% for song in songs %}
+              <tr class="hover:bg-[#313131ff] {% if song.link %}cursor-pointer{% endif %}"
+                  {% if song.link %} onclick="window.open('{{ song.link }}', '_blank')" {% endif %}>
+                <td class="rounded-l-md p-2">{{ loop.index }}</td>
+                <td class="flex flex-row p-2">
+                  <button onclick="showImagePopup(event, '{{ img_src ~ song.cover }}')">
+                    <img src="{{ img_src ~ song.cover }}" alt="song cover" class="h-11 w-11 mr-2 rounded-md shadow-xl object-cover bg-white">
+                  </button>
+                  <div class="ml-2">
+                    <div class="text-[16px] text-white">{{ song.name }}</div>
+                    <div style="font-size: 0.85rem; color: #aaa;">{{ song.artist }}</div>
+                  </div>
+                </td>
+                <td class="p-2">
+                  {% if song.album %}
+                    <p>{{ song.album }}</p>
+                  {% endif %}
+                </td>
+                <td class="w-64 rounded-r-md p-2 pr-14 text-end whitespace-nowrap">
+                  {% if playlist.col3 %}
+                    {% if song.end_duration %}
+                      <p>{{song.start_duration.strftime('%b %Y') }} - {{ song.end_duration.strftime('%b %Y') }}</p>
+                    {% else %}
+                      <p>{{song.start_duration.strftime('%b %Y') }}</p>
+                    {% endif %}
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+      <div class="h-4"></div>
+    </div>
+    <div id="imagePopup"
+        class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50"
+        onclick="hideImagePopup()">
+      <img id="popupImage" class="shadow-2xl rounded max-h-[90vh] max-w-[90vw]">
+    </div>
+{% endblock %}

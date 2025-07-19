@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matthew Muranaka</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../static/styles/main.css">
+    <link rel="stylesheet" href="../static/styles/intro.css">
+</head>
+<body class="bg-neutral-900">
+    <div class="flex flex-col justify-center items-center h-screen">
+        <img src="../static/images/spotify-logo.png" alt="spotify-logo" class="h-48 w-48">
+        <h1 class="p-10 text-5xl text-[#1dd760ff]">Matthew Muranaka</h1>
+    </div>
+    <script>
+        let page = document.body
+
+        page.addEventListener('click', () => {
+            page.classList.add('fade-out');
+
+            setTimeout(() => {
+            window.location.href = '/home';
+            }, 500);
+        });
+    </script>
+</body>
+</html>

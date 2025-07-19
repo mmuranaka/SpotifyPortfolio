@@ -1,0 +1,8 @@
+body {
+    transition: opacity 0.5s ease;
+    color: white;
+}
+
+.profile-header {
+    background: linear-gradient(to bottom, #4b4444ff 0%, #252020ff 100%)
+}

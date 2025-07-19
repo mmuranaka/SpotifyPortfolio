@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <ul class="p-7 flex flex-col">
+  {% for topic in topics %}
+    <li>
+      <p class="text-secondary text-[12px] pl-3 pt-3">{{ topic.subname }}</p>
+      <h1 class="text-[24px] font-bold pl-3 hover:underline">{{ topic.name }}</h1>
+          <div>
+            <ul class="flex flex-row py-3">
+              {% for playlist in playlists %}
+                {% if playlist.topic_id == topic.id %}
+                  <a href="{{ '/' ~ (playlist.name | lower) }}">
+                    <li>
+                      <div class="p-3 rounded-md hover:bg-[#313131ff] w-[13.5rem] max-w-[13.5rem] h-[17rem] max-h-[17rem]">
+                        <img src="{{ img_src ~ playlist.cover }}" alt="playlist cover" class="h-48 w-48 rounded-md object-cover">
+                        <p class="pt-2 text-[16px]">{{ playlist.name }}</p>
+                        <p class="text-secondary truncate text-[14px]">{{ playlist.description }}</p>
+                      </div>
+                    </li>
+                  </a>
+                {% endif %}
+              {% endfor %}
+              {% if topic.name == "Recruiters" %}
+                <a href="" target="_blank">
+                  <li>
+                    <a href="/resume" target="_blank">
+                      <div class="p-3 rounded-md hover:bg-[#313131ff] w-[13.5rem] max-w-[13.5rem] h-[17rem] max-h-[17rem]">
+                        <img src="../static/images/resume.jpg" alt="playlist cover" class="h-48 w-48 rounded-md object-cover">
+                        <p class="pt-2 text-[16px]">Resume</p>
+                        <p class="text-secondary truncate text-[14px]"></p>
+                      </div>
+                    </a>
+                  </li>
+                </a>
+              {% endif %}
+            </ul>
+          </div>
+    </li>
+  {% endfor %}
+    </ul>
+{% endblock %}

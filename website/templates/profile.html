@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="flex flex-row pt-10 pl-8 pb-6 profile-header">
+  <img src="../static/images/profile-picture.jpg" alt="backend home picture" class="h-64 w-64 rounded-[50%] shadow-xl">
+  <div class="flex flex-col pl-8 justify-end">
+    <p class="pl-1 text-[14px] lighter-color">Profile</p>
+    <p class="font-extrabold text-[96px]">Matthew Muranaka</p>
+    <p class="pl-1 text-[14px] lighter-color mb-4">
+      Aspiring Software Engineer &#183; <a href="/resume" target="_blank"><span class="text-secondary hover:underline">Resume</span></a>
+    <p>
+  </div>
+</div>
+<div class="mx-6 my-8">
+  <p class="font-bold text-[24px]">Socials</p>
+  <ul class="flex flex-row py-3">
+    {% for social in socials %}
+      <li>
+        <a href="{{ social.link }}" target="_blank">
+          <div class="home-page-topics p-3 rounded-md flex flex-col hover:bg-[#313131ff] align-center">
+            <img src="{{ img_src ~ social.cover }}" alt="social cover" class="h-40 w-40 rounded-[50%] object-cover self-center">
+            <p class="pt-2 text-[16px] hover:underline">{{ social.name }}</p>
+            <p class="text-[16px] text-[rgb(179,179,179)]">{{ social.album }}</p>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

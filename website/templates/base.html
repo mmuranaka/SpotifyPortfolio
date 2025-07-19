@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matthew Muranaka</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../static/styles/main.css">
+  <link rel="stylesheet" href="../static/styles/home.css">
+  <link rel="stylesheet" href="../static/styles/playlist.css">
+  <link rel="stylesheet" href="../static/styles/profile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
+</head>
+<body class="bg-neutral-900">
+  <nav class="z-50 fixed top-0 left-0 right-0 h-16 bg-neutral-950 px-6 flex flex-row items-center justify-between">
+    <div>
+      <a href="/">
+        <img src="../static/images/spotify-logo.png" alt="spotify-logo" class="h-8 w-8">
+      </a>
+    </div>
+    <div class="flex flex-row">
+      <a href="/home">
+				<div class="bg-neutral-800 py-3 px-4 rounded-[50%] hover:bg-neutral-700 transition-colors transition-border duration-200 ease-in-out relative inline-block group">
+					<i class="fa-solid fa-house"></i>
+          <span class="absolute top-full left-1/2 mt-2 -translate-x-1/2 px-2 py-1 text-[14px] font-thin text-white bg-black rounded shadow-lg opacity-0 transition-opacity duration-200 delay-0 group-hover:delay-[250ms] group-hover:opacity-100">
+            Home
+          </span>
+				</div>
+			</a>
+      <div class="flex items-center bg-neutral-800 px-4 py-2 ml-2 rounded-full w-[484px] border border-neutral-800 hover:bg-neutral-700 hover:border-neutral-600 custom-hover-transition">
+        <i class="fa fa-search text-gray-400"></i>
+        <input
+          type="text"
+          placeholder="Matthew Muranaka"
+          class="flex-1 bg-transparent outline-none px-4 text-[16px] placeholder:text-gray-400"
+        />
+        <div class="h-6 border-l border-gray-600 mx-3"></div>
+        <div class="relative inline-block group">
+            <i class="fa-solid fa-circle-info m-1"></i>
+            <span class="absolute top-full left-1/2 mt-2 -translate-x-1/2 px-2 py-1 text-[14px] font-thin text-white bg-black rounded shadow-lg opacity-0 transition-opacity duration-200 delay-0 group-hover:delay-[250ms] group-hover:opacity-100">
+              Info
+            </span>
+          </div>
+      </div>
+    </div>
+		<a href="/profile">
+			<div class="h-12 w-12 rounded-[50%] bg-[#202020ff] flex items-center justify-center transform transition-transform duration-300 hover:scale-110 relative inline-block group">
+				<img src="../static/images/profile-picture.jpg" alt="profile picture" class="h-9 w-9 rounded-[50%]">
+        <span class="absolute top-full left-1/2 mt-2 -translate-x-1/2 px-2 py-1 text-[14px] font-thin text-white bg-black rounded shadow-lg opacity-0 transition-opacity duration-200 delay-0 group-hover:delay-[250ms] group-hover:opacity-100">
+          Profile
+        </span>
+      </div>
+		</a>
+  </nav>
+
+  <main class="absolute left-0 right-0 pb-10 top-16 overflow-auto">
+    {% block main %} {% endblock %}
+  </main>
+
+  <footer class="z-50 fixed bottom-0 left-0 right-0 h-20 bg-neutral-950 px-64
+                 flex flex-row justify-between items-center">
+		<span></span>
+    <div class="flex flex-col items-center justify-between">
+      <div class="flex-row items-center mb-2">
+				<i class="fa-solid fa-shuffle mr-6"></i>
+				<i class="fa-solid fa-backward-step mr-6"></i>
+				<a href="/resume" target="_blank">
+          <span class="w-8 h-8 flex items-center justify-center bg-white rounded-full relative inline-block group">
+            <i class="fa-solid fa-play text-black"></i>
+            <span class="absolute bottom-full left-1/2 mb-2 -translate-x-1/2 px-2 py-1 text-[14px] font-thin text-white bg-black rounded shadow-lg opacity-0 transition-opacity duration-200 delay-200 group-hover:opacity-100">
+              Resume
+            </span>
+          </span>
+        </a>
+				<i class="fa-solid fa-forward-step ml-6"></i>
+				<i class="fa-solid fa-repeat ml-6"></i>
+			</div>
+			<div class="flex-row items-center">
+				<p class="text-[12px] text-[rgb(179,179,179)]">0:00</p>
+				<div class="w-96 h-1 mx-2 bg-[#575657ff] rounded-md"></div>
+				<p class="text-[12px] text-[rgb(179,179,179)]">4:44</p>
+			</div>
+    </div>
+    <span></span>
+  </footer>
+  <script>
+    function showImagePopup(event, src) {
+      event.stopPropagation(); // <--- this stops the row click
+      const popup = document.getElementById('imagePopup');
+      const popupImage = document.getElementById('popupImage');
+      popupImage.src = src;
+      popup.classList.remove('hidden');
+    }
+
+    function hideImagePopup() {
+      const popup = document.getElementById('imagePopup');
+      popup.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
