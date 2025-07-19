@@ -1,4 +1,7 @@
 env/
 .env
 website/__pycache__/
+__pycache__
 .DS_Store
+.vercel
+

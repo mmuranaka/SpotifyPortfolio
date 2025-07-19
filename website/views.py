@@ -22,8 +22,11 @@ def home():
 @views.route('/<playlist_name>')
 def playlist(playlist_name):
     playlist = Playlist.query.filter(Playlist.name.ilike(playlist_name)).first()
-    songs = Song.query.filter_by(playlist_id=playlist.id).order_by(Song.start_duration.desc())
-    return render_template('playlist.html', img_src=img_src, playlist=playlist, songs=songs)
+    try:
+        songs = Song.query.filter_by(playlist_id=playlist.id).order_by(Song.start_duration.desc())
+        return render_template('playlist.html', img_src=img_src, playlist=playlist, songs=songs)
+    except AttributeError:
+        return render_template('intro.html')
 
 @views.route('/profile')
 def profile():
